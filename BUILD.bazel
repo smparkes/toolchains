@@ -5,16 +5,31 @@ toolchain_type(
 )
 
 my_toolchain_impl(
-    name = "my_toolchain_impl",
+    name = "my_first_toolchain_impl",
 )
 
 toolchain(
-    name = "my_toolchain",
-    toolchain = ":my_toolchain_impl",
+    name = "my_first_toolchain",
+    toolchain = ":my_first_toolchain_impl",
     toolchain_type = "//:my_type"
 )
 
 my_rule(
-    name = "my_target",
-    toolchains = [":my_toolchain"],
+    name = "my_first_target",
+    toolchains = [":my_first_toolchain_impl"],
+)
+
+my_toolchain_impl(
+    name = "my_second_toolchain_impl",
+)
+
+toolchain(
+    name = "my_second_toolchain",
+    toolchain = ":my_second_toolchain_impl",
+    toolchain_type = "//:my_type"
+)
+
+my_rule(
+    name = "my_second_target",
+    toolchains = [":my_second_toolchain_impl"],
 )
